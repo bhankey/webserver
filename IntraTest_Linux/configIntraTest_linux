@@ -1,0 +1,36 @@
+server {
+
+listen 127.0.0.1:8080;
+root    /home/sergey/Documents/school_21/webserv;
+
+client_max_body_size 100m;
+    location / {
+        request_method GET;
+        autoindex on;
+    }
+
+    location /put_test {
+        request_method PUT;
+        is_upload on;
+        path_for_upload /;
+    }
+
+    location *.bla {
+        request_method POST;
+        extension_CGI bla;
+        path_CGI    IntraTest_Linux/ubuntu_cgi_tester;
+    }
+
+    location /post_body {
+        client_max_body_size 100;
+        request_method POST;
+        is_upload on;
+        path_for_upload ./YoupiBanane;
+    }
+
+    location /directory {
+        root /home/sergey/Documents/school_21/webserv/YoupiBanane;
+        request_method GET;
+        index youpi.bad_extension;
+    }
+}
